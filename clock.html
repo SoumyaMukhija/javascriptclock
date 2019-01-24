@@ -1,0 +1,109 @@
+<html>
+<head>
+	<meta name='viewport' content='width=device-width, initial-scale=1'>
+	<meta charset='UTF-8'>
+
+	<style>
+		.bd {
+			background-image: linear-gradient(#F8FFAE, #43C6AC);
+		}
+		.clocksurround
+		{
+			border: 20px solid white;
+			height:300px; 
+			border-radius: 90%;
+			width:300px;
+			position:absolute;
+			top:170px;
+			left:500px;
+		}
+		.hand
+		{
+			width: 50%;
+			height:6px;
+			background-color: black; 
+			position:absolute;
+			top:50%;
+			transform-origin:100%;
+			border-radius:30%;
+			padding:2px;
+		}
+		.hour-hand
+		{
+			position:absolute;
+			transform:rotate(90deg);
+			width: 35%;
+			left:15%;
+			
+		}
+		.min-hand
+		{
+			width: 45%;
+			transform:rotate(90deg);
+			left:5%;
+		}
+		.sec-hand
+		{
+			width: 50%;
+			transform:rotate(90deg);
+			height:1px;
+
+		}
+		#writedate
+		{
+			position:absolute;
+			top:78%;
+			left: 45%;
+			align-content: center;
+			font-family: georgia; 
+			font-size: 30px; 
+			font-weight: 2px;
+		}
+	</style>
+
+
+	<body class='bd'>
+
+ 		<div class='clocksurround'>
+ 			<div class='hand hour-hand'> </div>
+ 			<div class='hand min-hand'> </div>
+ 			<div class='hand sec-hand'> </div>
+  		</div>
+  		<p id='writedate'></p>
+
+ 	</body>
+
+
+ 	<script>
+
+ 		const sechand=document.querySelector('.sec-hand');
+ 		const minhand=document.querySelector('.min-hand');
+ 		const hourhand=document.querySelector('.hour-hand');
+
+ 		function setTime()
+ 		{
+ 			const date= new Date(); 
+
+ 			const secs= date.getSeconds();
+ 			secs_degrees=((secs/60)*360) + 90;
+ 			sechand.style.transform='rotate(' + secs_degrees +'deg)';
+
+ 			const mins=date.getMinutes();
+ 			mins_degrees=((mins/60)*360)+90; 
+ 			minhand.style.transform='rotate('+mins_degrees+'deg)';
+
+ 			const hours=date.getHours();
+ 			hours_degrees=((hours/12)*360)+90; 
+ 			hourhand.style.transform='rotate('+hours_degrees+'deg)';
+
+ 			document.getElementById('writedate').innerHTML=hours + ':' + mins + ':' + secs;
+
+ 		}
+ 		setInterval(setTime, 1000);
+
+ 		/*const hours=date.getHours();
+ 		const mins=date.getMinutes();
+ 		const secs=date.getSeconds();*/
+ 	</script>
+
+</html>
